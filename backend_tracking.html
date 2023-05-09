@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Progress</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Request Progress</h1>
+<ul id="request-list"></ul>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    // Update the request list on the page
+    function updateRequests(requests) {
+        const requestList = document.getElementById('request-list');
+        requestList.innerHTML = '';
+
+        for (const requestId in requests) {
+            const request = requests[requestId];
+            const li = document.createElement('li');
+            li.textContent = `Request ID: ${requestId}, Status: ${request.status}, Pickup Cabinet: ${request.pickupCabinet}`;
+            requestList.appendChild(li);
+        }
+    }
+
+    // Listen for request updates from the server
+    socket.on('updateRequests', (requests) => {
+        updateRequests(requests);
+    });
+</script>
+</body>
+</html>
