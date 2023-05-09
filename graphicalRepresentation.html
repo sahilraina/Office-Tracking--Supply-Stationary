@@ -1,0 +1,43 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+
+function OrderHistory({ productId }) {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(`/orders/${productId}`);
+        setOrders(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchOrders();
+  }, [productId]);
+  const mostOrderedProduct = orders.reduce((prev, current) =>
+    prev.quantity > current.quantity ? prev : current
+  );
+
+  const data = orders.map(order => ({
+    date: order.orderDate,
+    quantity: order.quantity
+  }));
+
+  return (
+    <div>
+      <h2>Order History</h2>
+      <p>Most ordered product: {mostOrderedProduct.productName}</p>
+      <BarChart width={600} height={300} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="quantity" fill="#8884d8" />
+      </BarChart>
+    </div>
+  );
+}
+
+export default OrderHistory;
