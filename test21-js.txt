@@ -1,0 +1,24 @@
+function checkProductQuantity(productId, orderQuantity) {
+  const MongoClient = require('mongodb').MongoClient;
+  const url = 'mongodb://localhost:27017';
+  const dbName = 'testdb';
+
+  MongoClient.connect(url, function(err, client) {
+    const db = client.db(dbName);
+    const collection = db.collection('products');
+
+    collection.findOne({ _id: productId }, function(err, product) {
+      if (err) {
+        console.error(err);
+        return false;
+      }
+
+      if (product.quantity < orderQuantity) {
+        console.error('Insufficient product quantity');
+        return false;
+      }
+
+      return true;
+    });
+  });
+}
