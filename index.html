@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Supply Availability</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Supply Availability</h1>
+	<p>Enter a supply to check availability:</p>
+	<input type="text" id="supplyInput">
+	<button onclick="checkSupply()">Check Availability</button>
+	<p id="availability"></p>
+
+	
+
+	<script>
+		function checkSupply() {
+			var supply = document.getElementById("supplyInput").value;
+			fetch('/check_supply?name=' + supply)
+				.then(response => response.json())
+				.then(data => {
+					if (data.available) {
+						document.getElementById("availability").innerHTML = supply + "	 is available.";
+					} else {
+						document.getElementById("availability").innerHTML = supply + " is not available.";
+					}
+				})
+				.catch(error => {
+					console.error('Error:', error);
+				});
+		}
+	</script>
+</body>
+</html>

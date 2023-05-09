@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stationary Availability</title>
+  </head>
+  <body>
+    <h1>Stationary Availability</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+      </tbody>
+    </table>
+
+    <script>
+      fetch('/api/status')
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.getElementById('table-body');
+          for (const item in data) {
+            const row = document.createElement('tr');
+            const itemName = document.createElement('td');
+            itemName.textContent = item;
+            const itemStatus = document.createElement('td');
+            itemStatus.textContent = data[item] ? 'Available' : 'Not Available';
+            row.appendChild(itemName);
+            row.appendChild(itemStatus);
+            tableBody.appendChild(row);
+          }
+        })
+        .catch(error => console.error(error));
+    </script>
+  </body>
+</html>

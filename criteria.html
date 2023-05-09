@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unavailable Supplies</title>
+	<script src="criteria.js"></script>
+</head>
+<body>
+	<h1>Unavailable Supplies</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Supply Name</th>
+				<th>Inventory</th>
+			</tr>
+		</thead>
+		<tbody id="supply-list">
+		</tbody>
+	</table>
+	<script>
+		$(document).ready(function() {
+			$.get("http://localhost:8080", function(data) {
+				const supplies = JSON.parse(data);
+				supplies.forEach(function(supply) {
+					$("#supply-list").append("<tr><td>" + supply.name + "</td><td>" + supply.inventory + "</td></tr>");
+				});
+			});
+		});
+	</script>
+</body>
+</html>

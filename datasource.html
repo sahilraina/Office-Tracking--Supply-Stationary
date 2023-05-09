@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Supplies List</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $.get('/supplies', (supplies) => {
+        const availableSupplies = supplies.filter(supply => supply.available);
+        availableSupplies.forEach(supply => {
+          $('#supplies-list').append(`<li>${supply.name}</li>`);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Available Supplies</h1>
+  <ul id="supplies-list"></ul>
+</body>
+</html>

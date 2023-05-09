@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Supply Management System</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    function updateSupply() {
+      const data = {
+        supply: document.getElementById('supply').value,
+        availability: document.getElementById('availability').value
+      };
+
+      socket.emit('update-supply', data);
+    }
+  </script>
+</head>
+<body>
+  <h1>Supply Management System</h1>
+  <p>Update supply availability:</p>
+  <label>Supply:</label>
+  <input type="text" id="supply">
+  <label>Availability:</label>
+  <input type="text" id="availability">
+  <button onclick="updateSupply()">Update</button>
+</body>
+</html>
