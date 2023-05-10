@@ -1,0 +1,83 @@
+.adminnav {
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .adminul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+
+  
+  .admina {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  /* Main Content Styles */
+  main {
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  th,
+  td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  th {
+    background-color: #eee;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Form Styles */
+  form {
+    display: inline-block;
+  }
+  
+  select {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  input[type="submit"] {
+    padding: 5px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #444;
+  }
+  
+  /* Section Styles */
+  section {
+    margin-bottom: 40px;
+  }
+  
